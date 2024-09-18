@@ -196,7 +196,7 @@ public class BookManager {
         int id = Integer.parseInt(sc.nextLine());
         BookType book = BookTypeBusiness.getBookById(id);
         if (book != null) {
-            book.setDeleted(false);
+            book.setDeleted(true);
             boolean result = BookTypeBusiness.updateBook(book);
             if (result) {
                 System.out.println("Xóa thành công");
@@ -322,7 +322,7 @@ public class BookManager {
         int id = Integer.parseInt(sc.nextLine());
         Book book = BookBusiness.getBookById(id);
         if (book != null) {
-            book.setDeleted(false);
+            book.setDeleted(true);
             boolean result = BookBusiness.updateBook(book);
             if (result) {
                 System.out.println("Xóa thành công");
