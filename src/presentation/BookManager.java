@@ -360,7 +360,7 @@ public class BookManager {
         List<Book> books = BookBusiness.PhanChia();
         if (!books.isEmpty()) {
             for (int i = 0; i < books.size(); i++) {
-                books.get(i).displayData();
+                books.get(i).showGroupTotalPages();
                 System.out.println(i < books.size() - 1 ? "----------" : "");
 
             }

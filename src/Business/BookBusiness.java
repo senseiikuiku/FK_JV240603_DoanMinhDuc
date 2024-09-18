@@ -208,20 +208,25 @@ public class BookBusiness {
         Connection conn = null;
         try {
             conn = ConnectionDB.openConnection();
-            String sql = "select *from Book limit 50 offset 0";
+            String sql = "SELECT \n" +
+                    "    BookName,\n" +
+                    "    Author,\n" +
+                    "    TotalPages,\n" +
+                    "    CASE\n" +
+                    "        WHEN TotalPages < 50 THEN 'Nhóm 1'\n" +
+                    "        WHEN TotalPages >= 50 AND TotalPages < 300 THEN 'Nhóm 2'\n" +
+                    "        ELSE 'Nhóm 3'\n" +
+                    "    END AS BookGroup\n" +
+                    "FROM \n" +
+                    "    Book;\n";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Book book = new Book();
-                book.setId(rs.getInt("BookId"));
                 book.setName(rs.getString("BookName"));
                 book.setAuthor(rs.getString("Author"));
                 book.setTotalPages(rs.getInt("TotalPages"));
-                book.setContent(rs.getString("Content"));
-                book.setPublisher(rs.getString("Publisher"));
-                book.setPrice(rs.getFloat("Price"));
-                book.setTypeId(rs.getInt("TypeId"));
-                book.setDeleted(rs.getBoolean("isDeleted"));
+                book.setGroup(rs.getString("BookGroup"));
                 books.add(book);
             }
         } catch (Exception e) {

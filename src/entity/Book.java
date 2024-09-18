@@ -14,10 +14,12 @@ public class Book implements IBookManger {
     private int typeId;
     private boolean isDeleted;
 
+    private String group;
+
     public Book() {
     }
 
-    public Book(int id, String name, String title, String author, int totalPages, String content, String publisher, float price, int typeId, boolean isDeleted) {
+    public Book(int id, String name, String title, String author, int totalPages, String content, String publisher, float price, int typeId, boolean isDeleted, String group) {
         this.id = id;
         this.name = name;
         this.title = title;
@@ -28,6 +30,7 @@ public class Book implements IBookManger {
         this.price = price;
         this.typeId = typeId;
         this.isDeleted = isDeleted;
+        this.group = group;
     }
 
     public int getId() {
@@ -144,6 +147,22 @@ public class Book implements IBookManger {
         this.typeId = Integer.parseInt(sc.nextLine());
         System.out.print("Nhập isDeleted(true hoặc false): ");
         this.isDeleted = Boolean.parseBoolean(sc.nextLine());
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public void showGroupTotalPages() {
+        System.out.println("Name: " + this.name);
+        System.out.println("Author: " + this.author);
+        System.out.println("TotalPages: " + this.totalPages);
+        System.out.println("Group: " + this.group);
+
     }
 
 }
